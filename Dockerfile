@@ -15,4 +15,4 @@ RUN mkdir /home/omnidb && \
 WORKDIR "/home/omnidb"
 
 EXPOSE 9000
-CMD cd /home/omnidb/OmniDB-1.3 && xsp4 --port 9000 && /bin/bash
+CMD cd /home/omnidb/OmniDB-1.3 && xsp4 --nonstop --port 9000
