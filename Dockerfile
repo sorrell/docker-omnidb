@@ -7,12 +7,12 @@ RUN apt-get update \
   mono-xsp4 \
   zip
 
-RUN mkdir /home/omnidb && \
-    cd /home/omnidb && \
-    curl -sS http://www.omnidb.com.br/OmniDB-1.3.zip > omnidb.zip && \
-    unzip omnidb.zip
+RUN curl -o /tmp/OmniDB.zip http://www.omnidb.com.br/OmniDB-1.3.zip
+RUN unzip /tmp/OmniDB.zip -d /opt/
+RUN rm -f /tmp/OmniDB.zip
+RUN rm -f /tmp/OmniDB.zip && apt-get remove -y curl unzip
 
-WORKDIR "/home/omnidb"
+WORKDIR "/opt/OmniDB-1.3"
 
 EXPOSE 9000
-CMD cd /home/omnidb/OmniDB-1.3 && xsp4 --nonstop --port 9000
+CMD xsp4 --nonstop --port 9000
